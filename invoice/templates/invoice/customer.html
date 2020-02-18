@@ -73,7 +73,6 @@
 			<th>Invoice #</th>
 			<th>Invoice Code</th>
 			<th>Date Created</th>
-			<th>Expiration Date</th>
 			<th>Total</th>
 			<th class="text-right">Actions</th>
 		</tr>
@@ -83,7 +82,6 @@
 			<td>{{ invoice.id }}</td>
 			<td>{{ invoice.invoice_code }}</td>
 			<td>{{ invoice.date_created }}</td>
-			<td>{{ invoice.expiration_date }}</td>
 			<td>{{ invoice.total_items }}</td>
 			<td class="text-right">
 				<a href="{% url 'invoice:view_invoice' invoice.id %}"

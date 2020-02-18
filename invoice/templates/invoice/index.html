@@ -12,7 +12,6 @@
 			<th>Invoice Code</th>
 			<th>Customer</th>
 			<th>Date Created</th>
-			<th>Expiration Date</th>
 			<th>Total (EGP)</th>
 			<th class="text-right">Actions</th>
 		</tr>
@@ -24,7 +23,6 @@
     			<td>{{ invoice.invoice_code }}</td>
     			<td>{{ invoice.customer }}</td>
     			<td>{{ invoice.date_created|date:"SHORT_DATE_FORMAT" }}</td>
-    			<td>{{ invoice.expiration_date|date:"SHORT_DATE_FORMAT" }}</td>
     			<td>{{ invoice.total_items }}</td>
     			<td class="text-right">
     				<a href="{% url 'invoice:view_invoice' invoice.id %}" class="btn btn-xs btn-primary">View</a>
