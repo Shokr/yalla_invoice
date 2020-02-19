@@ -15,6 +15,7 @@ urlpatterns = [
     path('invoice/<int:invoice_id>/', invoices.invoice, name='invoice'),
     path('invoice/search/', invoices.search_invoice, name='search_invoice'),
     path('view-invoice/<int:invoice_id>/', invoices.view_invoice, name='view_invoice'),
+    # path('edit-invoice/<int:invoice_id>/', invoices.edit_invoice, name='edit_invoice'),
     path('invoice/<int:invoice_id>/print/', invoices.print_invoice, name='print_invoice'),
     path('invoice/<int:invoice_id>/invalidate/', invoices.invalidate_invoice, name='invalidate_invoice'),
 

@@ -10,7 +10,6 @@ from ..forms import *
 
 @login_required
 def index(request):
-
     invoices = Invoice.objects.all().order_by('-date_created')
 
     context = {
@@ -105,6 +104,17 @@ def view_invoice(request, invoice_id):
         'invoice': invoice,
     }
     return render(request, 'invoice/view_invoice.html', context)
+
+
+# # edit invoice
+# @login_required
+# def edit_invoice(request, invoice_id):
+#     invoice = get_object_or_404(Invoice, pk=invoice_id)
+#     context = {
+#         'title': "Invoice " + str(invoice_id),
+#         'invoice': invoice,
+#     }
+#     return render(request, 'invoice/invoice.html', context)
 
 
 # Print invoice

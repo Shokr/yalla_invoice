@@ -2,42 +2,46 @@
 
 {% block content %}
 
-{% if invoice_list %}
+    {% if invoice_list %}
 
-<div class="panel panel-primary">
-	<div class="panel-heading">{% if title %}{{ title }}{% else %}Invoices{% endif %}</div>
-	<table class="table table-hover">
-		<tr>
-			<th>Invoice</th>
-			<th>Invoice Code</th>
-			<th>Customer</th>
-			<th>Date Created</th>
-			<th>Total (EGP)</th>
-			<th class="text-right">Actions</th>
-		</tr>
+        <div class="panel panel-primary">
+            <div class="panel-heading">{% if title %}{{ title }}{% else %}Invoices{% endif %}</div>
+            <table class="table table-hover">
+                <tr>
+                    <th>Invoice</th>
+                    <th>Invoice Code</th>
+                    <th>Customer</th>
+                    <th>Date Created</th>
+                    <th>Total (EGP)</th>
+                    <th class="text-right">Actions</th>
+                </tr>
 
-		{% for invoice in invoice_list %}
-            {% if invoice.valid %}
-		     <tr>
-    			<td>{{ invoice.id }}</td>
-    			<td>{{ invoice.invoice_code }}</td>
-    			<td>{{ invoice.customer }}</td>
-    			<td>{{ invoice.date_created|date:"SHORT_DATE_FORMAT" }}</td>
-    			<td>{{ invoice.total_items }}</td>
-    			<td class="text-right">
-    				<a href="{% url 'invoice:view_invoice' invoice.id %}" class="btn btn-xs btn-primary">View</a>
-    			 <a href="{% url 'invoice:customer' invoice.customer.id %}" class="btn btn-xs btn-default">Customer</a>
-                 <a href="{% url 'invoice:invalidate_invoice' invoice.id %}" class="btn btn-xs btn-danger">Invalidate</a>
-    			</td>
-		    </tr>
-            {% endif %}
-		{% endfor %}
-	</table>
-</div>
-    
+                {% for invoice in invoice_list %}
+                    {% if invoice.valid %}
+                        <tr>
+                            <td>{{ invoice.id }}</td>
+                            <td>{{ invoice.invoice_code }}</td>
+                            <td>{{ invoice.customer }}</td>
+                            <td>{{ invoice.date_created|date:"SHORT_DATE_FORMAT" }}</td>
+                            <td>{{ invoice.total_items }}</td>
+                            <td class="text-right">
+                                <a href="{% url 'invoice:view_invoice' invoice.id %}" class="btn btn-xs btn-primary">View</a>
+{#                                <a href="{% url 'invoice:edit_invoice' invoice.id %}" class="btn btn-xs btn-info">Edit</a>#}
 
-{% else %}
-<div class="alert alert-warning">No invoices!</div>
-{% endif %}
+                                <a href="{% url 'invoice:customer' invoice.customer.id %}"
+                                   class="btn btn-xs btn-default">Customer</a>
+                                <a href="{% url 'invoice:invalidate_invoice' invoice.id %}"
+                                   class="btn btn-xs btn-danger">Invalidate</a>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+
+    {% else %}
+        <div class="alert alert-warning">No invoices!</div>
+    {% endif %}
 
 {% endblock %}
