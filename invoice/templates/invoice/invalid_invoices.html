@@ -29,7 +29,8 @@
                 <td class="bg-danger">{{ invoice.total_items }}</td>
                 <td class="text-right bg-danger">
                     <a href="{% url 'invoice:view_invoice' invoice.id %}" class="btn btn-xs btn-primary">View</a>
-                 <a href="{% url 'invoice:customer' invoice.customer.id %}" class="btn btn-xs btn-default">Customer</a>
+                    <a href="{% url 'invoice:customer' invoice.customer.id %}" class="btn btn-xs btn-default">Customer</a>
+                </td>
             {% endif %}
         </tr>
         {% endfor %}
