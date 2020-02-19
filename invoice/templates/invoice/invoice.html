@@ -81,8 +81,8 @@
 				<td>&nbsp;</td>
 				<td>
 					<div class="btn-group" role="group">
-						<button class="btn btn-primary add-form-row">+</button>
-						<button class="btn btn-danger remove-form-row">-</button>
+{#						<button class="btn btn-primary add-form-row">+</button>#}
+{#						<button class="btn btn-danger remove-form-row">-</button>#}
 					</div>
 				</td>
 				
@@ -97,7 +97,7 @@
 	</div>
 </form>
 
-<div class="well text-right">Invoice net total: EGP {{ invoice.total }}</div>
+{#<div class="well text-right">Invoice net total: EGP {{ invoice.total }}</div>#}
 
 
 <!-- Delete confirmation modal -->
@@ -150,13 +150,13 @@
 	$("table tr input").change(function(event){
 		var elementNameAttr = $(this).attr("name"), index, cost_value, qty_value, sum=0;
 		if (elementNameAttr) { index = elementNameAttr.split("-")[1]; }
-		
+
 		cost_value = parseFloat( $("table tr input[name=form-"+index+"-cost]").val() );
 		qty_value = parseInt( $("table tr input[name=form-"+index+"-qty]").val() );
 		if (cost_value && qty_value) {  //if fields are set
 			var fourth_td_element = $("table tr input[name=form-"+index+"-qty]").parent().siblings()[3];
 			fourth_td_element.innerText = cost_value * qty_value;
-			
+
 			var i = 0;
 			$("table tr").each(function() {  /*sum all total values*/
 				fourth_td_element = $(this).children()[4];
@@ -167,7 +167,7 @@
 
 			$("div#total-output").html("<strong>Total: EGP "+sum+"</strong>");
 			$("div#total-output").attr("data", sum);
-			$("div.well").text("Invoice net total: EGP "+sum);
+			{#$("div.well").text("Invoice net total: EGP "+sum);#}
 		} else {
 			var fourth_td_element = $("table tr input[name=form-"+index+"-qty]").parent().siblings()[3];
 			fourth_td_element.innerText = 0;
@@ -186,7 +186,7 @@
 			if ( totalElementData > 0 ) {
 				$("div#total-output").html("<strong>Total: EGP "+totalElementData+"</strong>");
 				$("div#total-output").attr("data", totalElementData);
-				$("div.well").text("Invoice net total: EGP "+totalElementData);
+				{#$("div.well").text("Invoice net total: EGP "+totalElementData);#}
 			}
 		}
 	}
@@ -234,10 +234,10 @@
 		});
 		total++;
 		$('#id_' + prefix + '-TOTAL_FORMS').val(total);
-		$(selector).after(newElement);
-		var conditionRow = $('.form-row:not(:last)');
-		conditionRow.find('.btn.add-form-row')
-		return false;
+		{#$(selector).after(newElement);#}
+		{#var conditionRow = $('.form-row:not(:last)');#}
+		{#conditionRow.find('.btn.add-form-row')#}
+		{#return false;#}
 	}
 	
 	function deleteForm(prefix, btn) {
@@ -254,17 +254,17 @@
 		}
 		return false;
 	}
-	$(document).on('click', '.add-form-row', function(e){
-		e.preventDefault();
-		cloneMore('.form-row:last', 'form');
-		return false;
-	});
-	$(document).on('click', '.remove-form-row', function(e){
-		e.preventDefault();
-		on_minus_press($(this));
-		deleteForm('form', $(this));
-		return false;
-	});
+	{#$(document).on('click', '.add-form-row', function(e){#}
+	{#	e.preventDefault();#}
+	{#	cloneMore('.form-row:last', 'form');#}
+	{#	return false;#}
+	{#});#}
+	{#$(document).on('click', '.remove-form-row', function(e){#}
+	{#	e.preventDefault();#}
+	{#	on_minus_press($(this));#}
+	{#	deleteForm('form', $(this));#}
+	{#	return false;#}
+	{#});#}
 	
 </script>
 <!---Handles the formset on this view-->
