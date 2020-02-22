@@ -2,6 +2,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+
 import datetime
 
 # Local Applications imports
@@ -131,6 +133,7 @@ def print_invoice(request, invoice_id):
 
 # Invalidate an invoice
 @login_required
+# @user_passes_test(lambda u: u.groups.filter(name='xmen').count() == 0, login_url='invoice/all_invoice.html')
 def invalidate_invoice(request, invoice_id):
     invoice = get_object_or_404(Invoice, pk=invoice_id)
     invoice.valid = False

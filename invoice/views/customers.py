@@ -1,5 +1,5 @@
 # Third Party imports
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
@@ -78,6 +78,7 @@ def update_customer(request, customer_id):
 
 # Delete customer
 @login_required
+# @user_passes_test(lambda u: u.groups.filter(name='xmen').count() == 0, login_url='invoice/all_invoice.html')
 def delete_customer(request, customer_id):
     customer = get_object_or_404(Customer, pk=customer_id)
     customer.delete()
