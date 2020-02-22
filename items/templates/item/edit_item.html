@@ -1,0 +1,39 @@
+{% extends 'item/item_base.html' %}
+{% load widget_tweaks %}
+
+{% block main %}
+    <form id="RegisterValidation" action="{% url 'items:edit_item' item.pk %}" method="post">
+        {% csrf_token %}
+        <div class="card ">
+            <div class="card-header card-header-rose card-header-icon">
+                <div class="card-icon">
+                    <i class="material-icons">assignment</i>
+                </div>
+                <h4 class="card-title">Edit</h4>
+            </div>
+            <div class="card-body ">
+
+                <div class="form-group">
+                    <label for="name" class="bmd-label-floating"> Name *</label>
+                    {% render_field ItemForm.name type="text" class="form-control" id="name" %}
+                </div>
+
+                <div class="form-group">
+                    <label for="description" class="bmd-label-floating"> Description *</label>
+                    {% render_field ItemForm.description type="text" class="form-control" id="description" %}
+                </div>
+
+                <div class="form-group">
+                    <label for="cost" class="bmd-label-floating"> Cost *</label>
+                    {% render_field ItemForm.cost type="number" class="form-control" id="cost" %}
+                </div>
+
+
+                <div class="category form-category">* Required fields</div>
+            </div>
+            <div class="card-footer text-right">
+                <button type="submit" class="btn btn-rose">Edit</button>
+            </div>
+        </div>
+    </form>
+{% endblock main %}

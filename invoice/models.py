@@ -3,6 +3,8 @@ from items.models import Item
 
 import uuid
 
+from yalla_invoice import settings
+
 
 class Customer(models.Model):
     """
@@ -32,6 +34,7 @@ class Invoice(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     invoice_code = models.UUIDField(default=uuid.uuid4, editable=False)
     valid = models.BooleanField(default=True)
+    user = models.CharField(max_length=45, null=True, blank=True)
     date_created = models.DateField(auto_now_add=True)
 
     def __str__(self):

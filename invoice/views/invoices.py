@@ -70,6 +70,7 @@ def new_invoice(request):
     # If no customer_id is defined, create a new invoice
     if request.method == 'POST':
         customer_id = request.POST.get("customer_id", "None")
+        user = request.user.username
 
         if customer_id == 'None':
             customers = Customer.objects.order_by('name')
@@ -81,7 +82,7 @@ def new_invoice(request):
             return render(request, 'invoice/new_invoice.html', context)
         else:
             customer = get_object_or_404(Customer, pk=customer_id)
-            i = Invoice(customer=customer)
+            i = Invoice(customer=customer, user=user)
             i.save()
             return HttpResponseRedirect(reverse('invoice:invoice', args=(i.id,)))
 

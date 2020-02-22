@@ -1,4 +1,5 @@
 import random
+
 from django.db import models
 
 
@@ -9,6 +10,7 @@ class Item(models.Model):
     code = models.CharField(max_length=45, unique=True)
     description = models.TextField()
     cost = models.DecimalField(decimal_places=2, max_digits=10)
+    date_created = models.DateField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
 
