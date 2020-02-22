@@ -63,9 +63,9 @@
         {% for item in invoice.invoiceitem_set.all %}
         <tr>
             <td>{{ item.id }}</td>
-            <td>{{ item.name }}</td>
-			<td>{{ item.description }}</td>
-			<td>{{ item.cost }}</td>
+            <td>{{ item.item }}</td>
+			<td>{{ item.item.description }}</td>
+			<td>{{ item.item.cost }}</td>
 			<td>{{ item.qty }}</td>
 			<td>{{ item.total }}</td>
         </tr>

@@ -24,4 +24,5 @@ urlpatterns = [
     path('', include('users.urls', namespace="users")),
     path('invoice/', include('invoice.urls', namespace="invoice")),
     path('api/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

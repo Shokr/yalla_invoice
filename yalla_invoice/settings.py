@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # Our Apps.
     'invoice',
     'users',
+    'items',
 ]
 
 MIDDLEWARE = [
@@ -87,23 +88,45 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": 'mysql.connector.django',
+#         "NAME": "yalla",
+#         "USER": "root",
+#         "PASSWORD": "1812_Sen_8_151",
+#         "HOST": "localhost",
+#         "PORT": "3306",
+#     }
+# }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'yalla',
+#         'USER': 'root',
+#         'PASSWORD': '1812_Sen_8_151',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
+
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+# AUTH_PASSWORD_VALIDATORS = [
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+#     },
+# ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -126,3 +149,23 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Specifies the CSS Framework Crispy Forms should use.
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+# AUTH_USER_MODEL
+# AUTH_USER_MODEL = 'users.User'
+
+# REST_FRAMEWORK
+# ------------------------------------------------------------------------------
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer'
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.DjangoModelPermissions',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 100
+}
+
+CORS_ORIGIN_ALLOW_ALL = True

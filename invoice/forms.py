@@ -28,11 +28,15 @@ class CustomerForm(forms.ModelForm):
                    }
 
 
+# class ItemForms(forms.Form):
+#     item = forms.CharField(min_length=2, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
+#     description = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+#     cost = forms.DecimalField(widget=forms.TextInput(attrs={'placeholder': '0.00', 'class': 'form-control'}))
+#     qty = forms.IntegerField(min_value=1)
+
 class ItemForms(forms.Form):
-    item = forms.CharField(min_length=2, max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    description = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    cost = forms.DecimalField(widget=forms.TextInput(attrs={'placeholder': '0.00', 'class': 'form-control'}))
+    item = forms.ModelChoiceField(queryset=Item.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
     qty = forms.IntegerField(min_value=1)
 
 
-ItemFormset = formset_factory(ItemForms, extra=1, min_num=0, max_num=100)
+ItemFormset = formset_factory(ItemForms)

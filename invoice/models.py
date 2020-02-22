@@ -1,4 +1,6 @@
 from django.db import models
+from items.models import Item
+
 import uuid
 
 
@@ -40,7 +42,7 @@ class Invoice(models.Model):
         items = self.invoiceitem_set.all()
 
         for item in items:
-            total += item.cost * item.qty
+            total += item.item.cost * item.qty
 
         return total
 
@@ -51,13 +53,24 @@ class Invoice(models.Model):
 
 class InvoiceItem(models.Model):
     invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
-    name = models.CharField(max_length=128)
-    description = models.TextField()
-    cost = models.DecimalField(decimal_places=2, max_digits=10)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
     qty = models.IntegerField()
 
     def __str__(self):
-        return self.name
+        return self.item
 
     def total(self):
-        return self.cost * self.qty
+        return self.item.cost * self.qty
+
+# class InvoiceItem(models.Model):
+#     invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
+#     name = models.CharField(max_length=128)
+#     description = models.TextField()
+#     cost = models.DecimalField(decimal_places=2, max_digits=10)
+#     qty = models.IntegerField()
+#
+#     def __str__(self):
+#         return self.name
+#
+#     def total(self):
+#         return self.cost * self.qty

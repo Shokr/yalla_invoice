@@ -21,16 +21,13 @@ def add_item(request, invoice_id):
             if itemformset.is_valid():
                 for form in itemformset:
 
-                    item_name = form.cleaned_data.get('item')
-                    item_description = form.cleaned_data.get('description')
-                    item_cost = form.cleaned_data.get('cost')
+                    item = form.cleaned_data.get('item')
                     item_qty = form.cleaned_data.get('qty')
 
-                    if item_name is None or item_cost is None or item_qty is None:
+                    if item is None or item_qty is None:
                         items_not_add += 1
                     else:
-                        invoice_obj = invoice.invoiceitem_set.create(name=item_name, description=item_description,
-                                                                     cost=item_cost, qty=item_qty)
+                        invoice_obj = invoice.invoiceitem_set.create(item=item, qty=item_qty)
                         invoice_obj.save()
                         items_added += 1
                         del invoice_obj

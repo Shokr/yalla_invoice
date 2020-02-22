@@ -2,6 +2,9 @@
 from rest_framework import viewsets, filters
 
 # Local application imports.
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+
 from .models import *
 from .serializers import *
 

@@ -49,17 +49,13 @@
 		<table class="table table-hover">
 			<tr>
 				<th>Item</th>
-				<th>Description</th>
-				<th>Cost (EGP)</th>
 				<th>Qty</th>
 				<th>Total (EGP)</th>
 				<th class="text-right">Actions</th>
 			</tr>
 			{% for item in invoice.invoiceitem_set.all %}
 			<tr>
-				<td>{{ item.name }}</td>
-				<td>{{ item.description }}</td>
-				<td>L.E {{ item.cost }}</td>
+				<td>{{ item.item.name }}</td>
 				<td>{{ item.qty }}</td>
 				<td>{{ item.total }}</td>
 				<td class="text-right">
@@ -71,12 +67,6 @@
 			{% for forms in formset %}
 			<tr class="form-row">	
 				<td id="items-field">{{ forms.item }}</td>
-				<td id="description-field">{{ forms.description }}</td>
-				<td>
-					<div class="input-group" id="cost-field">
-						<span class="input-group-addon"></span>{{ forms.cost }}
-					</div>
-				</td>
 				<td id="qty-field">{{ forms.qty }}</td>
 				<td>&nbsp;</td>
 				<td>
